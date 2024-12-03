@@ -1,0 +1,4 @@
+python -m venv portfoliovenv
+source portfoliovenv/bin/activate
+pip install django
+django-admin startproject portfolioproject .
