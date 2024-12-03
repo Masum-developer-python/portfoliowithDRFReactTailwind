@@ -2,3 +2,5 @@ python -m venv portfoliovenv
 source portfoliovenv/bin/activate
 pip install django
 django-admin startproject portfolioproject .
+python3 manage.py startapp portfoliobackend
+pip install djangorestframework django-cors-headers
