@@ -5,6 +5,6 @@ django-admin startproject portfolioproject .
 python3 manage.py startapp portfoliobackend
 pip install djangorestframework django-cors-headers
 npx create-react-app portfolio-frontend // npm create vite@latest portfoliofrontend --template react **
-npm install axios tailwindcss ### postcss autoprefixer react-router-dom
+npm install axios tailwindcss postcss autoprefixer react-router-dom
 npx tailwindcss init
 

@@ -38,24 +38,35 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import ProjectCard from './components/ProjectCard';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [projects, setProjects] = useState([]);
-
+  let youtubelink = 'https://youtu.be/emPohstWs-w';
+  youtubelink = youtubelink.replace('youtu.be', 'youtube.com/embed');
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/projects/') // Update to match your backend API URL
+    fetch('http://127.0.0.1:8000/api/portfolio/projects/') // Update to match your backend API URL
       .then((response) => response.json())
       .then((data) => setProjects(data));
   }, []);
 
   return (
+    
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-6">My Portfolio</h1>
+      <Navbar />
+      <h1 className="text-6xl font-bold mb-6">My Portfolio</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
+      <iframe className='p-10 w-full h-screen'
+        src={youtubelink}
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 };

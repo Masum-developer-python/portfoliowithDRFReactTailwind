@@ -17,3 +17,7 @@ class SkillViewSet(viewsets.ReadOnlyModelViewSet):
 class ExperienceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Experience.objects.all().order_by('-start_date')
     serializer_class = ExperienceSerializer
+
+
+def learninglist(req):
+    return render(req,'learninglist.html')

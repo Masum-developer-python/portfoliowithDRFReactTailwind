@@ -1,0 +1,361 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15-Day Web Development Learning Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-center mb-6 text-blue-700">15-Day Web Development Learning Roadmap</h1>
+        
+        <div class="space-y-6">
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-green-600">Days 1-3: Django Fundamentals</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="django-project-setup">
+                        <label for="django-project-setup">Set up Django project and first app</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="django-models">
+                        <label for="django-models">Create and configure Django models</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="django-orm">
+                        <label for="django-orm">Learn Django ORM and perform database migrations</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="django-views">
+                        <label for="django-views">Implement class-based and function-based views</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="django-auth">
+                        <label for="django-auth">Set up user authentication system</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-green-600">Days 4-6: Django Rest Framework (DRF)</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="drf-serializers">
+                        <label for="drf-serializers">Create and use DRF serializers</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="drf-viewsets">
+                        <label for="drf-viewsets">Implement ViewSets and generic views</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="drf-authentication">
+                        <label for="drf-authentication">Implement token and JWT authentication</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="drf-permissions">
+                        <label for="drf-permissions">Configure custom permissions and access control</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="drf-filtering">
+                        <label for="drf-filtering">Add filtering and pagination to API endpoints</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-green-600">Days 7-10: React Fundamentals</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="react-components">
+                        <label for="react-components">Create functional and class components</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="react-hooks">
+                        <label for="react-hooks">Learn and implement React Hooks (useState, useEffect)</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="react-routing">
+                        <label for="react-routing">Implement React Router for navigation</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="react-api">
+                        <label for="react-api">Make API calls using Axios</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="react-state-management">
+                        <label for="react-state-management">Explore state management techniques</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-green-600">Days 11-13: Tailwind CSS</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="tailwind-basics">
+                        <label for="tailwind-basics">Learn utility-first CSS approach</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="tailwind-responsive">
+                        <label for="tailwind-responsive">Create responsive designs</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="tailwind-react">
+                        <label for="tailwind-react">Style React components with Tailwind</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="tailwind-customization">
+                        <label for="tailwind-customization">Customize Tailwind configuration</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="tailwind-themes">
+                        <label for="tailwind-themes">Implement dark mode and custom themes</label>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold mb-4 text-green-600">Days 14-15: Full-Stack Project</h2>
+                <ul class="space-y-2">
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="project-backend">
+                        <label for="project-backend">Build Django & DRF backend with REST APIs</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="project-frontend">
+                        <label for="project-frontend">Create React frontend with API integration</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="project-styling">
+                        <label for="project-styling">Apply Tailwind CSS for responsive design</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="project-authentication">
+                        <label for="project-authentication">Implement user authentication flow</label>
+                    </li>
+                    <li class="flex items-center">
+                        <input type="checkbox" class="mr-3" id="project-deployment">
+                        <label for="project-deployment">Prepare project for deployment</label>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-Day Learning Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>15-Day Learning Plan</h1>
+    <ul>
+        <li><input type="checkbox"> <strong>Day 1:</strong> Introduction to Django, setting up the environment, and creating a basic project.</li>
+        <li><input type="checkbox"> <strong>Day 2:</strong> Understanding Django models, migrations, and the admin interface.</li>
+        <li><input type="checkbox"> <strong>Day 3:</strong> Learning Django views and templates. Creating a simple CRUD application.</li>
+        <li><input type="checkbox"> <strong>Day 4:</strong> Introduction to Django Rest Framework (DRF) and setting up a basic API.</li>
+        <li><input type="checkbox"> <strong>Day 5:</strong> Working with serializers in DRF and creating basic endpoints.</li>
+        <li><input type="checkbox"> <strong>Day 6:</strong> Authentication and permissions in DRF (e.g., token-based authentication).</li>
+        <li><input type="checkbox"> <strong>Day 7:</strong> Connecting a Django API with a database and testing endpoints.</li>
+        <li><input type="checkbox"> <strong>Day 8:</strong> Introduction to React, setting up the environment, and understanding components.</li>
+        <li><input type="checkbox"> <strong>Day 9:</strong> Learning React state and props. Creating a small dynamic application.</li>
+        <li><input type="checkbox"> <strong>Day 10:</strong> Integrating React with the Django API for dynamic data handling.</li>
+        <li><input type="checkbox"> <strong>Day 11:</strong> Introduction to Tailwind CSS. Setting up Tailwind in a React project.</li>
+        <li><input type="checkbox"> <strong>Day 12:</strong> Building responsive layouts with Tailwind CSS.</li>
+        <li><input type="checkbox"> <strong>Day 13:</strong> Styling React components with Tailwind and integrating it with forms.</li>
+        <li><input type="checkbox"> <strong>Day 14:</strong> Completing a full-stack project combining Django, DRF, React, and Tailwind.</li>
+        <li><input type="checkbox"> <strong>Day 15:</strong> Testing and deploying the full-stack project (Django backend and React frontend).</li>
+    </ul>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-Day Learning Plan with Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>15-Day Learning Plan with Resources</h1>
+    <ul>
+        <li>
+            <input type="checkbox"> <strong>Day 1:</strong> 
+            Introduction to Django 
+            <ul>
+                <li>Install Django and set up a virtual environment: <a href="https://docs.djangoproject.com/en/stable/intro/install/" target="_blank">Django Installation Guide</a></li>
+                <li>Create a basic Django project and app: <a href="https://www.djangoproject.com/start/" target="_blank">Django Getting Started</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 2:</strong> 
+            Django Models and Migrations
+            <ul>
+                <li>Learn about models: <a href="https://docs.djangoproject.com/en/stable/topics/db/models/" target="_blank">Django Models Overview</a></li>
+                <li>Working with migrations: <a href="https://docs.djangoproject.com/en/stable/topics/migrations/" target="_blank">Django Migrations Guide</a></li>
+                <li>Admin interface basics: <a href="https://docs.djangoproject.com/en/stable/ref/contrib/admin/" target="_blank">Admin Site</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 3:</strong> 
+            Django Views and Templates
+            <ul>
+                <li>Learn about views: <a href="https://docs.djangoproject.com/en/stable/topics/http/views/" target="_blank">Django Views</a></li>
+                <li>Template basics: <a href="https://docs.djangoproject.com/en/stable/topics/templates/" target="_blank">Django Templates</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 4:</strong> 
+            Introduction to Django Rest Framework (DRF)
+            <ul>
+                <li>Setting up DRF: <a href="https://www.django-rest-framework.org/tutorial/quickstart/" target="_blank">Quickstart Tutorial</a></li>
+                <li>Basic API overview: <a href="https://www.django-rest-framework.org/" target="_blank">DRF Official Site</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 5:</strong> 
+            DRF Serializers
+            <ul>
+                <li>Understanding serializers: <a href="https://www.django-rest-framework.org/tutorial/1-serialization/" target="_blank">Serialization in DRF</a></li>
+                <li>Writing custom serializers.</li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 6:</strong> 
+            Authentication and Permissions in DRF
+            <ul>
+                <li>Learn about authentication: <a href="https://www.django-rest-framework.org/api-guide/authentication/" target="_blank">Authentication Guide</a></li>
+                <li>Implement permissions: <a href="https://www.django-rest-framework.org/api-guide/permissions/" target="_blank">Permissions</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 7:</strong> 
+            Testing and API Integration
+            <ul>
+                <li>Connecting to databases: <a href="https://docs.djangoproject.com/en/stable/ref/databases/" target="_blank">Django Database API</a></li>
+                <li>Testing endpoints: <a href="https://www.django-rest-framework.org/api-guide/testing/" target="_blank">Testing APIs</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 8:</strong> 
+            Introduction to React
+            <ul>
+                <li>Set up React with Create React App: <a href="https://react.dev/learn/start-a-new-react-project" target="_blank">React Docs</a></li>
+                <li>Understand components: <a href="https://react.dev/learn/your-first-component" target="_blank">First Component</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 9:</strong> 
+            React State and Props
+            <ul>
+                <li>Learn about props: <a href="https://react.dev/learn/passing-data-between-components" target="_blank">Props Guide</a></li>
+                <li>Understand state: <a href="https://react.dev/learn/state-a-components-memory" target="_blank">State Guide</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 10:</strong> 
+            Integrating React with Django API
+            <ul>
+                <li>Fetching data from APIs: <a href="https://react.dev/learn/synchronizing-with-effects" target="_blank">React Effects</a></li>
+                <li>Axios for API requests: <a href="https://axios-http.com/" target="_blank">Axios Documentation</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 11:</strong> 
+            Introduction to Tailwind CSS
+            <ul>
+                <li>Set up Tailwind CSS: <a href="https://tailwindcss.com/docs/installation" target="_blank">Tailwind Installation Guide</a></li>
+                <li>Explore utility classes: <a href="https://tailwindcss.com/docs/utility-first" target="_blank">Utility-First Classes</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 12:</strong> 
+            Building Layouts with Tailwind CSS
+            <ul>
+                <li>Responsive design: <a href="https://tailwindcss.com/docs/responsive-design" target="_blank">Responsive Design Guide</a></li>
+                <li>Grid and flexbox utilities: <a href="https://tailwindcss.com/docs/grid" target="_blank">Grid Layout</a>, <a href="https://tailwindcss.com/docs/flex" target="_blank">Flexbox</a></li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 13:</strong> 
+            Styling React Components with Tailwind CSS
+            <ul>
+                <li>Using Tailwind in JSX.</li>
+                <li>Integrating Tailwind with forms.</li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 14:</strong> 
+            Building a Full-Stack Project
+            <ul>
+                <li>Combine Django API with React frontend.</li>
+                <li>Style the frontend with Tailwind CSS.</li>
+            </ul>
+        </li>
+        <li>
+            <input type="checkbox"> <strong>Day 15:</strong> 
+            Deployment
+            <ul>
+                <li>Deploy Django with a production server: <a href="https://docs.djangoproject.com/en/stable/howto/deployment/" target="_blank">Deployment Guide</a></li>
+                <li>Host React frontend (Netlify, Vercel, or similar): <a href="https://vercel.com/docs" target="_blank">Vercel Docs</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
