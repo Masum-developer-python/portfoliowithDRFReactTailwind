@@ -1,5 +1,6 @@
 import ThemeSelector from "./ThemeSelector";
 import ColorSelector from "./ColorSelector";
+import Submenu from "./menuSubmenu";
 
 function Nav() {
   return (
@@ -32,66 +33,30 @@ function Nav() {
           </li>
           <hr></hr>
           <li>
-            <div className="relative group h-full">
-              <button className="px-3 py-2 rounded hover:bg-gray-700">
-                হরকত
-              </button>
-
-              {/* Sub-Menu */}
-              <div className="absolute left-[120px] transform -translate-y-1/2 mt-2 w-48 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition duration-300 hover:z-10">
-                <a
-                  href="/fatha"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা যবর সহ
-                </a>
-                <a
-                  href="/kasrah"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা যের সহ
-                </a>
-                <a
-                  href="/dommah"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা পেশ সহ
-                </a>
-              </div>
-            </div>
+            <Submenu
+              menu={{
+                title: "হরকত",
+              }}
+              submenu={[
+                { title: "আরবী বর্ণমালা যবর সহ", src: "/fatha" },
+                { title: "আরবী বর্ণমালা যের সহ", src: "/kasrah" },
+                { title: "আরবী বর্ণমালা পেশ সহ", src: "/dommah" },
+              ]}
+            />
           </li>
-          
-          <hr></hr>
-          
           <li>
-            <div className="relative group">
-              <button className="px-3 py-2 rounded hover:bg-gray-700">
-                তানভীন
-              </button>
-
-              {/* Sub-Menu */}
-              <div className="absolute left-[120px] transform -translate-y-1/2 mt-2 w-48 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition duration-300 hover:z-10">
-                <a
-                  href="/fathatanween"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা দুই যবর সহ
-                </a>
-                <a
-                  href="/kasrahtanween"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা দুই যের সহ
-                </a>
-                <a
-                  href="/dommahtanween"
-                  className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-                >
-                  আরবী বর্ণমালা দুই পেশ সহ
-                </a>
-              </div>
-            </div>
+            <Submenu
+              menu={{
+                title: "তানভীন",
+              }}
+              submenu={[
+                { title: "আরবী বর্ণমালা দুই যবর সহ", src: "/fathatanween" },
+                { title: "আরবী বর্ণমালা দুই যের সহ", src: "/kasrahtanween" },
+                { title: "আরবী বর্ণমালা দুই পেশ সহ", src: "/dommahtanween" },
+              ]}
+            />
           </li>
+          <li></li>
         </ul>
       </nav>
     </>
