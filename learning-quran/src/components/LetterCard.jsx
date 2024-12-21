@@ -1,68 +1,12 @@
 import React from "react";
-function Cards({ selectedColor, marker = "", withNames = false }) {
-  const arabicAlphabet = [
-    "أ", // Alif with Hamza
-    "ب", // Baa
-    "ت", // Taa
-    "ث", // Thaa
-    "ج", // Jeem
-    "ح", // Haa
-    "خ", // Khaa
-    "د", // Dal
-    "ذ", // Thal
-    "ر", // Raa
-    "ز", // Zayn
-    "س", // Seen
-    "ش", // Sheen
-    "ص", // Sad
-    "ض", // Dad
-    "ط", // Taa
-    "ظ", // Zaa
-    "ع", // Ayn
-    "غ", // Ghayn
-    "ف", // Faa
-    "ق", // Qaf
-    "ك", // Kaf
-    "ل", // Lam
-    "م", // Meem
-    "ن", // Noon
-    "ه", // Haa
-    "و", // Waw
-    "ي", // Yaa
-  ];
-  const arabicAlphabetNames = [
-    "أَلِف",
-    "بَاء",
-    "تَاء",
-    "ثَاء",
-    "جِيم",
-    "حَاء",
-    "خَاء",
-    "دَال",
-    "ذَال",
-    "رَاء",
-    "زَاي",
-    "سِين",
-    "شِين",
-    "صَاد",
-    "ضَاد",
-    "طَاء",
-    "ظَاء",
-    "عَين",
-    "غَين",
-    "فَاء",
-    "قَاف",
-    "كَاف",
-    "لَام",
-    "مِيم",
-    "نُون",
-    "هَاء",
-    "وَاو",
-    "يَاء",
-  ];
+import {title,arabicAlphabet,arabicAlphabetNames} from "../data";
+
+function Cards({ selectedColor, arabicDiacritics = "", withNames = false }) {
+  
   let rowIndex = 0;
   return (
     <>
+    <h1 className="text-center text-4xl"> {title} <br></br> আরবী বর্ণমালা {arabicDiacritics && ('-'+ String.fromCodePoint(parseInt(arabicDiacritics, 16)) + '  দিয়ে')}</h1>
       <div
         key={rowIndex}
         className="flex flex-wrap flex-row-reverse w-[100%] space-x-1 m-4 "
@@ -81,7 +25,7 @@ function Cards({ selectedColor, marker = "", withNames = false }) {
             text-8xl text-center 
             ${selectedColor.textColor} rounded-lg`}
             >
-              {item + marker}
+              {item }{arabicDiacritics && (String.fromCodePoint(parseInt(arabicDiacritics, 16)))}
 
               {withNames && (
                 <div

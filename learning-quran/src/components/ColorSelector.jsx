@@ -12,7 +12,7 @@ function ColorSelector({ selectedTheme, selectedColor, setSelectedColor }) {
       <select
         value={JSON.stringify(selectedColor)}
         onChange={handleColorChange}
-        className=" p-2 border rounded"
+        className="w-full p-2 border rounded ${selectedColor.backgroundColor}"
       >
         {selectedTheme.combinations.map((combo, index) => (
           <option key={index} value={JSON.stringify(combo)}>

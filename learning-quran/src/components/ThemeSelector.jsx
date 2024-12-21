@@ -9,11 +9,11 @@ function ThemeSelector({ selectedTheme, setSelectedTheme, alphabetColorCombinati
 
   return (
     <>
-      <label className=" mb-2 font-semibold">Select Theme & color combination : &nbsp; &nbsp;</label>
+      <label className="w-full mb-2 font-semibold">Select Theme & color combination : &nbsp; &nbsp;</label>
       <select
         value={selectedTheme.theme}
         onChange={handleThemeChange}
-        className=" p-2 border rounded"
+        className="w-full p-2 border rounded"
       >
         {alphabetColorCombinations.map((theme) => (
           <option key={theme.theme} value={theme.theme}>

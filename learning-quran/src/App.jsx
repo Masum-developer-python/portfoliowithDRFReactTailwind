@@ -1,136 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cards from "./components/LetterCard";
-import ThemeSelector from "./components/ThemeSelector";
-import ColorSelector from "./components/ColorSelector";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { alphabetColorCombinations, arabicDiacritics} from "./data";
 
 function App() {
-  const alphabetColorCombinations = [
-    {
-      theme: "Calm Learning",
-      combinations: [
-        {
-          backgroundColor: "bg-blue-50",
-          textColor: "text-blue-800",
-          description: "Soft blue background with deep blue text",
-        },
-        {
-          backgroundColor: "bg-green-50",
-          textColor: "text-green-900",
-          description: "Pale green background with dark green text",
-        },
-        {
-          backgroundColor: "bg-yellow-100",
-          textColor: "text-gray-900",
-          description: "Light yellow background with dark gray text",
-        },
-      ],
-    },
-    {
-      theme: "High Contrast",
-      combinations: [
-        {
-          backgroundColor: "bg-white",
-          textColor: "text-black",
-          description: "Classic black and white for maximum readability",
-        },
-        {
-          backgroundColor: "bg-gray-100",
-          textColor: "text-indigo-800",
-          description: "Light gray background with deep indigo text",
-        },
-        {
-          backgroundColor: "bg-yellow-50",
-          textColor: "text-purple-900",
-          description: "Soft yellow background with deep purple text",
-        },
-      ],
-    },
-    {
-      theme: "Pastel Soft",
-      combinations: [
-        {
-          backgroundColor: "bg-pink-50",
-          textColor: "text-pink-900",
-          description: "Soft pink background with deep pink text",
-        },
-        {
-          backgroundColor: "bg-blue-100",
-          textColor: "text-blue-900",
-          description: "Light blue background with deep blue text",
-        },
-        {
-          backgroundColor: "bg-green-50",
-          textColor: "text-green-900",
-          description: "Pale green background with dark green text",
-        },
-      ],
-    },
-  ];
-  // console.log(alphabetColorCombinations[0].combinations[0].backgroundColor);
-  // let cl = alphabetColorCombinations[0].combinations[1];
-  // console.log(cl);
-  const [selectedTheme, setSelectedTheme] = useState(
-    alphabetColorCombinations[0]
-  );
-  const [selectedColor, setSelectedColor] = useState(
-    selectedTheme.combinations[0]
+  // Initialize state from localStorage or default values
+  const [selectedTheme, setSelectedTheme] = useState(() => {
+    const saved = localStorage.getItem("arabic-app-theme");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return alphabetColorCombinations[1];
+      }
+    }
+    return alphabetColorCombinations[1];
+  });
+  const [selectedColor, setSelectedColor] = useState(() => {
+    const saved = localStorage.getItem("arabic-app-color");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return selectedTheme.combinations[0];
+      }
+    }
+    return selectedTheme.combinations[0];
+  });
+
+  // Save to localStorage when theme changes
+  useEffect(() => {
+    localStorage.setItem("arabic-app-theme", JSON.stringify(selectedTheme));
+  }, [selectedTheme]);
+
+  // Save to localStorage when color changes
+  useEffect(() => {
+    localStorage.setItem("arabic-app-color", JSON.stringify(selectedColor));
+  }, [selectedColor]);
+  console.log(
+    arabicDiacritics[
+      arabicDiacritics.findIndex((d) => d.name == "Kasrah")
+    ].unicode.slice(2)
   );
 
   return (
     <>
-      <ThemeSelector
-        selectedTheme={selectedTheme}
-        setSelectedTheme={setSelectedTheme}
-        alphabetColorCombinations={alphabetColorCombinations}
-        setSelectedColor={setSelectedColor}
-      />{" "}
-      |
-      <ColorSelector
-        selectedTheme={selectedTheme}
-        selectedColor={selectedColor}
-        setSelectedColor={setSelectedColor}
-      />
       <div className="flex">
+        <Nav
+          selectedColor={selectedColor}
+          selectedTheme={selectedTheme}
+          setSelectedTheme={setSelectedTheme}
+          setSelectedColor={setSelectedColor}
+          alphabetColorCombinations={alphabetColorCombinations}
+        />
+
         <Router>
-          <Nav />
           <div className="flex-1 p-8">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <Cards
-                    selectedColor={selectedColor}
-                    marker=""
-                    withNames={true}
-                  />
-                }
-              />
-              <Route
-                path="/fatha"
-                element={<Cards selectedColor={selectedColor} marker="ََ" />}
-              />
-              <Route
-                path="/kasrah"
-                element={<Cards selectedColor={selectedColor} marker="ِ" />}
-              />
-              <Route
-                path="/dommah"
-                element={<Cards selectedColor={selectedColor} marker="َُ" />}
-              />
-              <Route
-                path="/fathatanween"
-                element={<Cards selectedColor={selectedColor} marker="ًَ" />}
-              />
-              <Route
-                path="/kasrahtanween"
-                element={<Cards selectedColor={selectedColor} marker="ٍ" />}
-              />
-              <Route
-                path="/dommahtanween"
-                element={<Cards selectedColor={selectedColor} marker="ٌَ" />}
-              />
+            {arabicDiacritics.map((route, index) => (
+            <Route
+              key={index}
+              path={`/${route.name.toLowerCase()}`} // Use name for the path
+              element={
+                <Cards
+                  selectedColor={selectedColor}
+                  // description={route.description}
+                  arabicDiacritics={route.unicode.slice(2)}
+                />
+              }
+            />
+          ))}
             </Routes>
           </div>
         </Router>
@@ -142,3 +82,42 @@ function App() {
   );
 }
 export default App;
+
+`<Route
+                path="/"
+                element={
+                  <Cards
+                    selectedColor={selectedColor}
+                    arabicDiacritics=""
+                    withNames={true}
+                  />
+                }
+              />
+              {/* <Route
+                path="/fatha"
+                element={<Cards selectedColor={selectedColor} marker="ََ" />}
+              /> */}
+              <Route
+                path="/fatha"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics="064E" />}
+              />
+              <Route
+                path="/kasrah"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics={arabicDiacritics[arabicDiacritics.findIndex((d)=>d.name=='Kasrah')].unicode.slice(2)} />}
+              />
+              <Route
+                path="/dommah"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics="064E" />}
+              />
+              <Route
+                path="/fathatanween"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics="064E" />}
+              />
+              <Route
+                path="/kasrahtanween"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics="064E" />}
+              />
+              <Route
+                path="/dommahtanween"
+                element={<Cards selectedColor={selectedColor} arabicDiacritics="064E" />}
+              />`;
