@@ -9,8 +9,15 @@ function Nav({
   setSelectedColor,
   alphabetColorCombinations,
 }) {
+  console.log('Nav.jsx');
   //console.log("Nav ");
   //console.log(selectedColor);
+//   Object.keys(arabicDiacritics).map((category) =>{
+//     console.log(category);
+//     arabicDiacritics[category].diacritics.map((route, index) => {
+//       console.log(route);
+//   })
+// })
   return (
     <>
       {/* Toggle Button for Small Screens */}
@@ -45,50 +52,7 @@ function Nav({
             setSelectedColor={setSelectedColor}
           />
         </div>
-        <ul className="space-y-4">
-          <div>
-            {/* <a
-              href="/"
-              className="block py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-            >
-              আরবী বর্ণমালা
-            </a> */}
-            <Submenu
-              menu={{
-                title: "আরবী বর্ণমালা", src : '/'
-              }}
-              submenu={[
-                
-              ]}
-            />
-          </div>
-          <hr></hr>
-          <div>
-            <Submenu
-              menu={{
-                title: "হরকত", src : ''
-              }}
-              submenu={[
-                { title: "আরবী বর্ণমালা যবর সহ", src: "/fathah" },
-                { title: "আরবী বর্ণমালা যের সহ", src: "/kasrah" },
-                { title: "আরবী বর্ণমালা পেশ সহ", src: "/dhammah" },
-              ]}
-            />
-          </div>
-          <div>
-            <Submenu
-              menu={{
-                title: "তানভীন", src : ''
-              }}
-              submenu={[
-                { title: "আরবী বর্ণমালা দুই যবর সহ", src: "/fathahtanween" },
-                { title: "আরবী বর্ণমালা দুই যের সহ", src: "/kasrahtanween" },
-                { title: "আরবী বর্ণমালা দুই পেশ সহ", src: "/dhammahtanween" },
-              ]}
-            />
-          </div>
-          <div></div>
-        </ul>
+        <Submenu />
       </nav>
     </>
   );

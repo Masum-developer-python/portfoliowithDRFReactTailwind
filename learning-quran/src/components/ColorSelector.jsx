@@ -1,3 +1,5 @@
+console.log('ColorSelector.jsx');
+
 import React from "react";
 
 function ColorSelector({ selectedTheme, selectedColor, setSelectedColor }) {
