@@ -1,0 +1,47 @@
+<!-- templates/money_tracker/dashboard.html -->
+{% extends 'money_tracker/base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-2">Income</h2>
+        <p class="text-2xl text-green-600">€{{ total_income }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-2">Expenses</h2>
+        <p class="text-2xl text-red-600">€{{ total_expenses }}</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-2">Net Amount</h2>
+        <p class="text-2xl {% if net_amount >= 0 %}text-green-600{% else %}text-red-600{% endif %}">
+            €{{ net_amount }}
+        </p>
+    </div>
+</div>
+
+<div class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-xl font-bold mb-4">Recent Transactions</h2>
+    <table class="min-w-full">
+        <thead>
+            <tr>
+                <th class="text-left">Date</th>
+                <th class="text-left">Type</th>
+                <th class="text-left">Category</th>
+                <th class="text-right">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.get_type_display }}</td>
+                <td>{{ transaction.category.name }}</td>
+                <td class="text-right {% if transaction.is_income %}text-green-600{% else %}text-red-600{% endif %}">
+                    €{{ transaction.amount }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

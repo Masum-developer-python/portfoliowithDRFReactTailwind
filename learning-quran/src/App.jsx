@@ -2,11 +2,24 @@ import { useState, useEffect } from "react";
 import Cards from "./components/LetterCard";
 import Nav from "./components/Nav";
 import SideBar from "./components/sideBar";
+import Words from "./components/Words";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { siteTitle, alphabetColorCombinations, arabicDiacritics } from "./data";
+import { siteTitle, alphabetColorCombinations, arabicDiacritics, receiveDataFromDjango } from "./data";
+import Table from "./components/letterRow";
+import Blog from "./components/Blog";
 
 function App() {
   console.log("App.jsx");
+
+  const [arabicAlphabet, setArabicAlphabet] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await receiveDataFromDjango("http://localhost:8000/quran/arabic-alphabets/");
+      setArabicAlphabet(data);  // ✅ Update state with fetched data
+    }
+    fetchData();
+  }, []);
+
   // Initialize state from localStorage or default values
   const [selectedTheme, setSelectedTheme] = useState(() => {
     const saved = localStorage.getItem("arabic-app-theme");
@@ -40,15 +53,9 @@ function App() {
   useEffect(() => {
     localStorage.setItem("arabic-app-color", JSON.stringify(selectedColor));
   }, [selectedColor]);
-  //console.log(arabicDiacritics);
+
   return (
     <>
-      {/* <div
-        className={`flex  justify-center items-center space-x-4 text-center text-2xl w-[100%] m-2 max-h-[150px] ${selectedColor.backgroundColor} ${selectedColor.textColor}`}
-      >
-        {" "}
-        {siteTitle} <br></br>{" "}
-      </div> */}
       <div className="flex w-[98%]">
         <Nav
           selectedColor={selectedColor}
@@ -59,45 +66,78 @@ function App() {
         />
 
         <Router>
-          <main className="flex-1 flex">
+          <main className="flex-1 flex max-w-">
             <Routes>
               <Route
                 key={0}
-                path={`/`} // Use name for the path
+                path={`/`}
                 element={
                   <Cards
                     selectedColor={selectedColor}
-                    // Pass the unicode part after 'U+'
-                    withNames={true}
+                    withHoverChildren={true}
+                    arabicAlphabet = {arabicAlphabet}
                   />
                 }
               />
-              
+              <Route
+                key={1}
+                path={`/tables`}
+                element={<Table selectedColor={selectedColor} arabicAlphabet = {arabicAlphabet} />}
+              />
+              <Route
+                key={2}
+                path={`/words`}
+                element={<Words selectedColor={selectedColor} />}
+              />
               {Object.keys(arabicDiacritics).map((category) =>
                 arabicDiacritics[category].diacritics.map((route, index) => (
-                  <Route
-                    key={index}
-                    path={`/${category}/${route.name.toLowerCase()}`} // Use name for the path
-                    element={
-                      <Cards
-                        selectedColor={selectedColor}
-                        arabicAlphabetDiacritics={route.unicode.slice(2)} // Pass the unicode part after 'U+'
-                        withNames={route.withNames}
-                        title={route.title}
-                        withPreAlphabet={route.preAlphabet}
-                        preAlphabetDiacriticsUnicode = {route.preAlphabetDiacriticsUnicode.slice(2)}
-                        isSaddah = { route.name.toLowerCase()=='ashshaddah' ? true : false}
+                  <>
+                    <Route
+                      key={`${index}0`}
+                      path={`/${category.toLowerCase()}`}
+                      element={<Blog selectedColor={selectedColor} />}
+                    />
+                    <Route
+                      key={`${index}1`}
+                      path={`/${category.toLowerCase()}/${route.name.toLowerCase()}`}
+                      element={
+                        <Cards
+                          arabicAlphabet = {arabicAlphabet}
+                          selectedColor={selectedColor}
+                          arabicAlphabetDiacritics={route.unicode.slice(2)}
+                          withNames={route.withNames}
+                          title={route.title}
+                          isSaakinah={
+                            route.name.toLowerCase() === "ashshaddah" ||
+                            route.name.toLowerCase() === "saakinah"
+                          }
+                          isSaddah={route.name.toLowerCase() === "ashshaddah"}
+                        />
+                      }
+                    />
+                    {(route.pages || []).map((page, pageIndex) => (
+                      <Route
+                        key={`${category}-${index}-${pageIndex}-page`}
+                        path={`/${category.toLowerCase()}/${route.name.toLowerCase()}${page.name.toLowerCase()}`}
+                        element={
+                          <Table
+                            arabicAlphabet = {arabicAlphabet}
+                            selectedColor={selectedColor}
+                            title={page.title}
+                            diacritics = {route.name.toLowerCase()}
+                          />
+                        }
                       />
-                    }
-                  />
+                    ))}
+                  </>
                 ))
               )}
             </Routes>
           </main>
         </Router>
-        {/* <SideBar selectedColor={selectedColor} /> */}
       </div>
     </>
   );
 }
+
 export default App;

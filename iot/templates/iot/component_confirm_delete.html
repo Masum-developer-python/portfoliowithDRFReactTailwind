@@ -1,0 +1,15 @@
+<!-- templates/iot/component_confirm_delete.html -->
+{% extends 'iot/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Delete {{ component_type }} Component</h2>
+    <p>Are you sure you want to delete "{{ component.name }}"?</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'iot:project_detail' pk=component.project.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

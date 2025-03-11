@@ -9,15 +9,15 @@ function Nav({
   setSelectedColor,
   alphabetColorCombinations,
 }) {
-  console.log('Nav.jsx');
+  console.log("Nav.jsx");
   //console.log("Nav ");
   //console.log(selectedColor);
-//   Object.keys(arabicDiacritics).map((category) =>{
-//     console.log(category);
-//     arabicDiacritics[category].diacritics.map((route, index) => {
-//       console.log(route);
-//   })
-// })
+  //   Object.keys(arabicDiacritics).map((category) =>{
+  //     console.log(category);
+  //     arabicDiacritics[category].diacritics.map((route, index) => {
+  //       console.log(route);
+  //   })
+  // })
   return (
     <>
       {/* Toggle Button for Small Screens */}
@@ -52,7 +52,7 @@ function Nav({
             setSelectedColor={setSelectedColor}
           />
         </div>
-        <Submenu />
+        <Submenu selectedTheme={selectedTheme} selectedColor={selectedColor} />
       </nav>
     </>
   );

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Family Tree</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <h1>Family Tree for {{ person.name }}</h1>
+
+    <h2>Ancestors:</h2>
+    <ul>
+      {% for ancestor in ancestors %}
+      <li>
+        {{ ancestor.name }} ( {% if ancestor.birth_date%}{{ ancestor.birth_date
+        }} {%endif%}- {% if ancestor.death_date%}{{ ancestor.death_date
+        }}{%endif%})
+      </li>
+      {% endfor %}
+    </ul>
+    <h1>{{ person.name }}</h1>
+
+    <h2>Descendants:</h2>
+    <ul>
+      {% for descendant in descendants %}
+      <li>
+        <a href="/genealogy/{{descendant.id}}">{{ descendant.name }}</a> ( {% if descendant.birth_date%}{{ descendant.birth_date }} {%endif%}- {% if ancestor.death_date%}{{ descendant.death_date }}{%endif%})
+      </li>
+      {% endfor %}
+    </ul>
+
+    <pre id="text-tree"></pre>
+    <div id="family-tree"></div>
+
+    <script>
+            // Parse the JSON data passed from Django
+            const familyData = {{ family_data|safe }};
+
+            // Convert hierarchical data into a Linux-style text tree
+            function generateTextTree(node, prefix = "") {
+                  let output = prefix + "|- - - - - " + node.name + "\n";
+                  console.log(node);
+                  if (node.children) {
+                      for (let i = 0; i < node.children.length; i++) {
+                          let isLast = (i === node.children.length - 1);
+                          output += generateTextTree(node.children[i], prefix + (isLast ? "|        " : "|        "));
+                      }
+                  }
+                  return output;
+              }
+
+              // Display text-based tree in HTML
+              document.getElementById("text-tree").textContent = generateTextTree(familyData);
+
+            // Set the dimensions of the canvas
+            const width = 2000, height = 1500;
+
+            const svg = d3.select("#family-tree")
+                          .append("svg")
+                          .attr("width", width)
+                          .attr("height", height)
+                          .append("g")
+                          .attr("transform", "translate(50,0)");
+
+            const tree = d3.tree().size([height, width - 250]);
+
+            // Define the hierarchy
+            const root = d3.hierarchy(familyData);
+
+            // Layout the tree
+            tree(root);
+
+            // Draw the nodes
+            const nodes = svg.selectAll(".node")
+                             .data(root.descendants())
+                             .enter()
+                             .append("g")
+                             .attr("class", "node")
+                             .attr("transform", d => `translate(${d.y},${d.x})`);
+
+
+
+            nodes.append("text")
+                 .attr("dx", 20)
+                 .attr("dy", 5)
+                 .text(d => d.data.name);
+
+            nodes.append("circle")
+                 .attr("r", 5)
+                 .style("fill", "lightsteelblue");
+
+          // Draw the links
+          svg.selectAll(".link")
+               .data(root.links())
+               .enter()
+               .append("path")
+               .attr("class", "link")
+               .attr("d", d3.linkVertical().x(d => d.y).y(d => d.x))
+               .style("stroke", "#aaa")  // Link color (light gray)
+               .style("stroke-width", 0.5)  // Narrow stroke width
+               .style("fill", "none");
+
+
+
+      //     // Set the dimensions of the canvas (swap width and height for vertical tree)
+      // const width1 = 1500, height1 = 6000;
+
+      // const svg1 = d3.select("#family-tree")
+      //               .append("svg")
+      //               .attr("width", width1)
+      //               .attr("height", height1)
+      //               .append("g")
+      //               .attr("transform", "translate(40,0)"); // Adjust margin as needed
+
+      // // Create a vertical tree layout (swap the size's width and height)
+      // const tree1 = d3.tree().size([width1 - 160, height1]);
+
+      // // Define the hierarchy
+      // const root1 = d3.hierarchy(familyData);
+
+      // // Layout the tree (with the new dimensions)
+      // tree(root1);
+
+      // // Draw the links (paths connecting nodes)
+      // svg1.selectAll(".link")
+      //    .data(root1.links())
+      //    .enter()
+      //    .append("path")
+      //    .attr("class", "link")
+      //    .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y))
+      //    .style("stroke", "#aaa")  // Link color (light gray)
+      //          .style("stroke-width", 0.5)  // Narrow stroke width
+      //          .style("fill", "none");; // Use d3.linkVertical()
+
+      // Draw the nodes (family members)
+      // const nodes1 = svg1.selectAll(".node")
+      //                  .data(root1.descendants())
+      //                  .enter()
+      //                  .append("g")
+      //                  .attr("class", "node")
+      //                  .attr("transform", d => `translate(${d.x},${d.y})`); // Swap x and y positions
+
+      // // Append circles (representing family members)
+      // nodes1.append("circle")
+      //      .attr("r", 5)  // Circle radius
+      //      .style("fill", "lightsteelblue");  // Circle color
+
+      // Append text (names of the family members)
+      // nodes1.append("text")
+      //      .attr("dx", 5)  // Horizontal offset for text
+      //      .attr("dy", 3)  // Vertical offset for text
+      //      .style("font-size", "12px")  // Optional: Adjust text size
+      //      .text(d => d.data.name);  // Display name of the node
+    </script>
+  </body>
+</html>

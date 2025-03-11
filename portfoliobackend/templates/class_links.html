@@ -1,0 +1,78 @@
+# templates/class_links.html {% extends 'base.html' %} {% block content %}
+<h2>Class Links</h2>
+<input
+  type="text"
+  id="search"
+  placeholder="Search topics..."
+  onkeyup="filterTopics()"
+/>
+<div id="video-container" style="margin-top: 20px"></div>
+<!-- New topic input and button -->
+<div id="add-topic-container" style="display:none;">
+  <input type="text" id="new-topic" placeholder="Enter a new topic">
+  <button onclick="addTopic()">Add Topic</button>
+</div>
+<ul>
+  {% for topic, links in class_links.items %}
+  <li>
+    <input
+      type="text"
+      value="{{ topic }}"
+      class="editable"
+      onchange="updateTopic(this, '{{ topic }}')"
+    />
+    <button onclick="toggleLinks('{{ topic }}')">Show/Hide</button>
+    <ul id="links-{{ topic }}" style="display: none">
+      {% for link in links %}
+      <li><a href="#" onclick="loadVideo('{{ link }}')">{{ link }}</a></li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+
+<script>
+  function toggleLinks(topic) {
+    var linksList = document.getElementById("links-" + topic);
+    linksList.style.display =
+      linksList.style.display === "none" ? "block" : "none";
+  }
+
+  // function loadVideo(url) {
+  //   var videoId = url.split('v=')[1] || url.split('/').pop();
+  //   document.getElementById('video-container').innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+  // }
+  function loadVideo(url) {
+    var videoId = url.split("v=")[1] || url.split("/").pop();
+    document.getElementById("video-container").innerHTML =
+      '<iframe width="560" height="315" src="https://www.youtube.com/embed/' +
+      videoId +
+      '" frameborder="0" allowfullscreen></iframe>';
+
+    // Show the "Add Topic" input field when a video is loaded
+    document.getElementById("add-topic-container").style.display = "block";
+
+    // Store the current video URL for associating it with the new topic
+    window.currentVideoUrl = url;
+  }
+  
+
+  function updateTopic(input, oldTopic) {
+    var newTopic = input.value;
+    console.log("Updated topic from " + oldTopic + " to " + newTopic);
+    // You can send an AJAX request to update the topic in the backend.
+  }
+
+  function filterTopics() {
+    var searchText = document.getElementById("search").value.toLowerCase();
+    var topics = document.querySelectorAll("ul > li");
+    topics.forEach(function (topic) {
+      if (topic.innerText.toLowerCase().includes(searchText)) {
+        topic.style.display = "block";
+      } else {
+        topic.style.display = "none";
+      }
+    });
+  }
+</script>
+{% endblock %}

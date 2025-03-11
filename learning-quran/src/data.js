@@ -1,7 +1,7 @@
 console.log("data.js");
 
 export const siteTitle =
-  "Al Quran learning , developed by RARE academy with Masum";
+  "Al  Quran  learning , developed by RARE academy with Masum";
 
 export const alphabetColorCombinations = [
   {
@@ -70,7 +70,7 @@ export const alphabetColorCombinations = [
 // console.log(cl);
 
 export const arabicAlphabet = [
-  "أ", // Alif with Hamza
+  "ا", // Alif with Hamza
   "ب", // Baa
   "ت", // Taa
   "ث", // Thaa
@@ -131,20 +131,9 @@ export const arabicAlphabetNames = [
 ];
 
 export const arabicDiacritics = {
-  Letter: {
-    name: "",
+  "": {
     title: "বর্ণমালা",
-    diacritics: [
-      {
-        name: "",
-        title: "বর্ণমালা",
-        symbol: "", // ـَ
-        unicode: "",
-        description: "Short 'a' sound",
-        withNames: true,
-        preAlphabetDiacriticsUnicode: ''
-      },
-    ],
+    diacritics: [],
   },
   Harakat: {
     title: "হরকত",
@@ -155,7 +144,12 @@ export const arabicDiacritics = {
         symbol: "\u064E", // ـَ
         unicode: "U+064E",
         description: "Short 'a' sound",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
       {
         name: "Kasrah",
@@ -163,7 +157,12 @@ export const arabicDiacritics = {
         symbol: "\u0650", // ـِ
         unicode: "U+0650",
         description: "Short 'i' sound",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
       {
         name: "Dhammah",
@@ -171,10 +170,16 @@ export const arabicDiacritics = {
         symbol: "\u064F", // ـُ
         unicode: "U+064F",
         description: "Short 'u' sound",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
     ],
   },
+
   Tanween: {
     title: "তানভীন",
     diacritics: [
@@ -184,7 +189,12 @@ export const arabicDiacritics = {
         symbol: "\u064B", // ـً
         unicode: "U+064B",
         description: "Indicates 'an' sound (tanween)",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
       {
         name: "KasrahTanween",
@@ -192,7 +202,12 @@ export const arabicDiacritics = {
         symbol: "\u064D", // ـٍ
         unicode: "U+064D",
         description: "Indicates 'in' sound (tanween)",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
       {
         name: "DhammahTanween",
@@ -200,12 +215,62 @@ export const arabicDiacritics = {
         symbol: "\u064C", // ـٌ
         unicode: "U+064C",
         description: "Indicates 'un' sound (tanween)",
-        preAlphabetDiacriticsUnicode: ''
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
       },
     ],
   },
-  'others': {
-    title : 'সাকিন & তাশদীদ',
+  Madd: {
+    title: "মদ",
+    diacritics: [
+      {
+        name: "Alif Madd",
+        title: "আলিফ মদ / খাড়া যবর",
+        symbol: "\u0657", // ـٰ
+        unicode: "U+0670",
+        description: "Represents a prolonged vowel sound",
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
+      },
+      {
+        name: "Yaa Madd",
+        title: "ইয়া মদ / খাড়া যের",
+        symbol: "\u0656", // ـٰ
+        unicode: "U+0656",
+        description: "Represents a prolonged vowel sound",
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
+      },
+      {
+        name: "Waao Madd",
+        title: "ওয়াও মদ / উল্টা পেশ",
+        symbol: "\u0657", // ـٰ
+        unicode: "U+0657",
+        description: "Represents a prolonged vowel sound",
+        pages: [
+          {
+            name: "Words",
+            title: "শব্দ",
+          },
+        ],
+      },
+    ],
+  },
+
+  others: {
+    title: "সাকিন & তাশদীদ",
     diacritics: [
       {
         name: "Saakinah",
@@ -213,8 +278,7 @@ export const arabicDiacritics = {
         symbol: "\u0652", // ـْ
         unicode: "U+0652",
         description: "No vowel (silent letter)",
-        preAlphabet: 'أ',
-        preAlphabetDiacriticsUnicode: 'U+064E',
+        pages: [],
       },
       {
         name: "AshShaddah",
@@ -222,123 +286,52 @@ export const arabicDiacritics = {
         symbol: "\u0651", // ـّ
         unicode: "U+0651",
         description: "Indicates doubling (gemination)",
-        preAlphabet: 'أ',
-        preAlphabetDiacriticsUnicode: 'U+064E',
+        pages: [],
       },
     ],
   },
-  
 };
 
-console.log(arabicDiacritics['others'].diacritics[0].preAlphabetDiacriticsUnicode);
-// export const arabicDiacritics = [
-//   {
-//     name: "",
-//     title: "",
-//     symbol: "", // ـَ
-//     unicode: "",
-//     description: "",
-//     withNames: true,
-//   },
-//   {
-//     name: "Fathah",
-//     title: "যবর",
-//     symbol: "\u064E", // ـَ
-//     unicode: "U+064E",
-//     description: "Short 'a' sound",
-//   },
-//   {
-//     name: "Kasrah",
-//     title: "যের",
-//     symbol: "\u0650", // ـِ
-//     unicode: "U+0650",
-//     description: "Short 'i' sound",
-//   },
-//   {
-//     name: "Dhammah",
-//     title: "পেশ",
-//     symbol: "\u064F", // ـُ
-//     unicode: "U+064F",
-//     description: "Short 'u' sound",
-//   },
-//   {
-//     name: "Saakinah",
-//     title: "সাকিন",
-//     symbol: "\u0652", // ـْ
-//     unicode: "U+0652",
-//     description: "No vowel (silent letter)",
-//     withAlphabetBar : true,
-//   },
-//   {
-//     name: "AshShaddah",
-//     title: "তাশদীদ",
-//     symbol: "\u0651", // ـّ
-//     unicode: "U+0651",
-//     description: "Indicates doubling (gemination)",
-//     withAlphabetBar : true,
+export async function sendDataToDjango(sdata,address) {
+  try {
+    const response = await fetch(
+      address,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sdata),
+      }
+    );
 
-//   },
-//   {
-//     name: "FathahTanween",
-//     title: "দুই যবর",
-//     symbol: "\u064B", // ـً
-//     unicode: "U+064B",
-//     description: "Indicates 'an' sound (tanween)",
-//   },
-//   {
-//     name: "KasrahTanween",
-//     title: "দুই যের",
-//     symbol: "\u064D", // ـٍ
-//     unicode: "U+064D",
-//     description: "Indicates 'in' sound (tanween)",
-//   },
-//   {
-//     name: "DhammahTanween",
-//     title: "দুই পেশ",
-//     symbol: "\u064C", // ـٌ
-//     unicode: "U+064C",
-//     description: "Indicates 'un' sound (tanween)",
-//   },
-// ];
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-// export const routes = [
-//   { name: '', description: 'No diacritic', unicode: '' },
-//   { name: 'Fathah', description: 'Short vowel a', unicode: '064E' },
-//   { name: 'Kasrah', description: 'Short vowel i', unicode: '0650' },
-//   { name: 'Dhammah', description: 'Short vowel u', unicode: '064F' },
-//   { name: 'FathahTanween', description: 'Nasal a', unicode: '064B' },
-//   { name: 'KasrahTanween', description: 'Nasal i', unicode: '064D' },
-//   { name: 'DhammahTanween', description: 'Nasal u', unicode: '064C' }
-// ];
+    const result = await response.json();
+    console.log("Data sent successfully:", result);
+  } catch (error) {
+    console.error("Error sending data:", error);
+  }
+}
 
-//         none : [''],
-//         harakaat : [],
-//         tanween : [],
-//         madd : [],
-//         saakinah : [],
-//         ashshaddah : [],
 
-// ]
-//console.log(arabicDiacritics.findIndex((d)=>d.name=='Fatha'));
-// console.log(arabicDiacritics[arabicDiacritics.findIndex((d)=>d.name=='Fatha')]).unicode;
-//console.log(arabicDiacritics[arabicDiacritics.findIndex((d)=>d.name=='Kasra')].unicode.slice(2));
-//arabicDiacritics : arabicDiacritics[arabicDiacritics.findIndex((d)=>d.name=='Fatha')],
+export async function receiveDataFromDjango(address) {
+  try {
+    const response = await fetch(
+      address
+    );
 
-// {
-//   name: "Madd",
-//   symbol: "\u0653", // ـٓ
-//   unicode: "U+0653",
-//   description: "Prolongation of vowel sound",
-// },
-// {
-//   name: "Hamza Above",
-//   symbol: "\u0623", // أ
-//   unicode: "U+0623",
-//   description: "Glottal stop with short 'a'",
-// },
-// {
-//   name: "Hamza Below",
-//   symbol: "\u0625", // إ
-//   unicode: "U+0625",
-//   description: "Glottal stop with short 'i'",
-// },
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const result = await response.json();
+    return result;
+    console.log("Data sent successfully:", result);
+  } catch (error) {
+    console.error("Error sending data:", error);
+    return null;
+  }
+}

@@ -1,0 +1,30 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Links</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+        h2 { color: #333; }
+        input { margin-bottom: 10px; padding: 5px; width: 100%; }
+        ul { list-style-type: none; padding: 0; }
+        li { margin: 10px 0; }
+        iframe { width: 100%; max-width: 560px; height: 315px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Class Links</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Class Links</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!-- project_detail.html -->
+{% extends 'iot/base.html' %} {% block title %}{{ project.name }} - IoT
+Inventory{% endblock %} {% block content %}
+<div class="space-y-6">
+  <!-- Project Overview -->
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-2xl font-bold">{{ project.name }}</h1>
+      <a
+        href="{% url 'iot:project_edit' project.pk %}"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >Edit Project</a
+      >
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Client</p>
+        <p class="font-semibold">{{ project.client_name }}</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Start Date</p>
+        <p class="font-semibold">{{ project.start_date }}</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Target Completion</p>
+        <p class="font-semibold">{{ project.target_completion }}</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Budget Status</p>
+        <p class="font-semibold">
+          {{ project.budget_used }} / {{ project.total_budget }} Tk
+        </p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Payment Status</p>
+        <p class="font-semibold">
+          {{ project.customer_given_tk }} Tk
+        </p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">xxxx</p>
+        <p class="font-semibold">
+          {{ total_installed_cost }} Tk
+        </p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded">
+        <p class="text-sm text-gray-500">Payment Status</p>
+        <p class="font-semibold">
+            {{ payment_status }}   
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- Client Components -->
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Client Components</h2>
+      <a
+        href="{% url 'iot:client_component_add' project.pk %}"
+        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >Add Component</a
+      >
+    </div>
+    {% if client_components %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Name
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Quantity
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Condition
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          {% for component in client_components %}
+          <tr>
+            <td class="px-6 py-4">{{ component.name }}</td>
+            <td class="px-6 py-4">{{ component.quantity }}</td>
+            <td class="px-6 py-4">
+              <span
+                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.condition == 'new' %}bg-green-100 text-green-800 {% elif component.condition == 'used' %}bg-yellow-100 text-yellow-800 {% else %}bg-red-100 text-red-800{% endif %}"
+              >
+                {{ component.condition }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <a
+                href="{% url 'iot:client_component_edit' component.pk %}"
+                class="text-blue-600 hover:text-blue-900"
+                >Edit</a
+              ><br>
+              <a href="{% url 'iot:client_component_delete' pk=component.pk %}" class="btn btn-sm btn-danger text-blue-600 hover:text-blue-900">Delete</a>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-gray-500 text-center py-4">
+      No client components added yet.
+    </p>
+    {% endif %}
+  </div>
+
+  <!-- Required Components -->
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold">Required Components</h2>
+      <a
+        href="{% url 'iot:required_component_add' project.pk %}"
+        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >Add Component</a
+      >
+    </div>
+    {% if required_components %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Name
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Quantity
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Cost
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Status
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          {% for component in required_components %}
+          <tr>
+            <td class="px-6 py-4">{{ component.name }}</td>
+            <td class="px-6 py-4">{{ component.quantity }}</td>
+            <td class="px-6 py-4">${{ component.total_cost }}</td>
+            <td class="px-6 py-4">
+              <span
+                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if component.status == 'received' %}bg-green-100 text-green-800 {% elif component.status == 'ordered' %}bg-yellow-100 text-yellow-800 {% elif component.status == 'pending' %}bg-red-100 text-red-800 {% else %}bg-blue-100 text-blue-800{% endif %}"
+              >
+                {{ component.status }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <a
+                href="{% url 'iot:required_component_edit' component.pk %}"
+                class="text-blue-600 hover:text-blue-900"
+                >Edit</a
+              ><br>
+              <a href="{% url 'iot:required_component_delete' pk=component.pk %}" class="btn btn-sm btn-danger text-blue-600 hover:text-blue-900">Delete</a>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="text-gray-500 text-center py-4">
+      No required components added yet.
+    </p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

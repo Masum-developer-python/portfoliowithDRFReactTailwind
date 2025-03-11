@@ -1,0 +1,42 @@
+<!-- templates/iot_inventory/project_form.html -->
+{% extends 'iot_inventory/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}New{% endif %} Project - IoT Inventory{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold mb-6">{% if form.instance.pk %}Edit{% else %}New{% endif %} Project</h1>
+    
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="space-y-2">
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                {{ field.label }}
+            </label>
+            <div class="mt-1">
+                {{ field }}
+            </div>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="text-red-600 text-sm">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+            {% if field.help_text %}
+                <p class="text-gray-500 text-sm">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <div class="flex justify-end space-x-4">
+            <a href="{% url 'iot_inventory:project_list' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                Cancel
+            </a>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                {% if form.instance.pk %}Save Changes{% else %}Create Project{% endif %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
